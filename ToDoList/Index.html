@@ -1,0 +1,45 @@
+<html>
+<head>
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet"></link>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+	<script src="Index.js"></script>
+	
+</head>
+<body>
+<div ng-app="TaskManager" class="container" >
+ 
+    <div class="wrapper" ng-controller="taskController" >
+      <h2 style="text-align:center">To-do List</h1>
+      <form class="form-signin">
+        <div class="inputContainer">
+		<span style="color:red">{{errormsg}}</span></br></br>
+		 <label for="description">Task</label>
+         <input type="text" class="form-control" id="description" class="taskName" placeholder="Add Your To-Do" ng-model="newTask"></br></br>
+        </div>
+      
+     
+        <div class="row">
+          <button class="btn btn-lg btn-primary btn-mar "  ng-click="addNew(newTask)"><i class="fa fa-plus icon" style="padding: 5px;"></i>Add task</button>
+          <button class="btn btn-lg btn-primary  btn-mar"  ng-click="deleteTask()"><i class="fa fa-trash-o icon" style="padding: 5px;"></i>Delete Tasks</button>
+        </div>
+     </br></br>
+	   
+      <ul  class="taskList">
+		<input type="checkbox" id="selectAll" ng-click="toggleAll()" ng-model="isAllSelected">Select all </br>
+        <li class="taskItem" ng-repeat="taskItem in taskItem track by $index" ng-model="taskItem">
+          <input type="checkbox" class="taskCheckbox" ng-model="taskItem.complete" ng-change="save()">
+          <span class="complete-{{taskItem.complete}}">{{taskItem.description}}</span> <span class="category-{{taskItem.category}}">{{taskItem.category}}</span> </li>
+      </ul>
+	   </form>
+      <!-- taskList --> 
+   
+    <!-- content --> 
+</div>
+  <!-- container --> 
+</div>
+</body>
+</html>
+
